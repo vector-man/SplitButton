@@ -15,6 +15,18 @@ namespace Sce.Atf.Controls
     /// <remarks>ToolStripSplitButton is managed only by ToolStrip</remarks>
     public class SplitButton : Button
     {
+        private const int PushButtonWidth = 14;
+
+        private static readonly int BorderSize = SystemInformation.Border3DSize.Width * 2;
+
+        private Rectangle m_dropDownRectangle;
+
+        private bool m_showSplit = true;
+
+        private bool m_skipNextOpen;
+
+        private PushButtonState m_state;
+
         /// <summary>
         /// Constructor</summary>
         public SplitButton()
@@ -335,6 +347,22 @@ namespace Sce.Atf.Controls
             }
         }
 
+        private void ContextMenuStrip_Closing(object sender, ToolStripDropDownClosingEventArgs e)
+        {
+            var cms = sender as ContextMenuStrip;
+            if (cms != null)
+            {
+                cms.Closing -= ContextMenuStrip_Closing;
+            }
+
+            SetButtonDrawState();
+
+            if (e.CloseReason == ToolStripDropDownCloseReason.AppClicked)
+            {
+                m_skipNextOpen = (m_dropDownRectangle.Contains(PointToClient(Cursor.Position)));
+            }
+        }
+
         private void PaintArrow(Graphics g, Rectangle dropDownRect)
         {
             var middle = new Point(Convert.ToInt32(dropDownRect.Left + dropDownRect.Width / 2),
@@ -350,6 +378,22 @@ namespace Sce.Atf.Controls
                             };
 
             g.FillPolygon(SystemBrushes.ControlText, arrow);
+        }
+
+        private void SetButtonDrawState()
+        {
+            if (Bounds.Contains(Parent.PointToClient(Cursor.Position)))
+            {
+                MState = PushButtonState.Hot;
+            }
+            else if (Focused)
+            {
+                MState = PushButtonState.Default;
+            }
+            else
+            {
+                MState = PushButtonState.Normal;
+            }
         }
 
         private void ShowContextMenuStrip()
@@ -369,45 +413,5 @@ namespace Sce.Atf.Controls
                 ContextMenuStrip.Show(this, new Point(0, Height), ToolStripDropDownDirection.BelowRight);
             }
         }
-
-        private void ContextMenuStrip_Closing(object sender, ToolStripDropDownClosingEventArgs e)
-        {
-            var cms = sender as ContextMenuStrip;
-            if (cms != null)
-            {
-                cms.Closing -= ContextMenuStrip_Closing;
-            }
-
-            SetButtonDrawState();
-
-            if (e.CloseReason == ToolStripDropDownCloseReason.AppClicked)
-            {
-                m_skipNextOpen = (m_dropDownRectangle.Contains(PointToClient(Cursor.Position)));
-            }
-        }
-
-        private void SetButtonDrawState()
-        {
-            if (Bounds.Contains(Parent.PointToClient(Cursor.Position)))
-            {
-                MState = PushButtonState.Hot;
-            }
-            else if (Focused)
-            {
-                MState = PushButtonState.Default;
-            }
-            else
-            {
-                MState = PushButtonState.Normal;
-            }
-        }
-
-        private const int PushButtonWidth = 14;
-        private static readonly int BorderSize = SystemInformation.Border3DSize.Width * 2;
-
-        private PushButtonState m_state;
-        private bool m_skipNextOpen;
-        private Rectangle m_dropDownRectangle;
-        private bool m_showSplit = true;
     }
 }
