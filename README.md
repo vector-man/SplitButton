@@ -11,7 +11,7 @@ So, after much searching, I stumbled across the [Authoring Tools Framework (ATF)
 Usage
 =====
 
-First, add the control to your form snd set the ContextMenuStrip to the menu for displaying the dropdown.
+First, add the control to your form and set the ContextMenuStrip to the menu for displaying the dropdown.
 
 By default, clicking the arrow on the button will display the menu. To enable dropdown support, either set the DropDown property to "true" the the designer or within code:
     
