@@ -1,5 +1,5 @@
 # SplitButton
-A SplitButton and DropDownButton for Windows Forms written in C#, forked from [Authoring Tools Framework (ATF) by Sony.](https://github.com/SonyWWS/ATF)
+A SplitButton and DropDownButton for Windows Forms written in C#, forked and improved from [Authoring Tools Framework (ATF) by Sony.](https://github.com/SonyWWS/ATF)
 
 Overview
 ========
