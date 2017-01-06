@@ -15,17 +15,13 @@ namespace Sce.Atf.Controls
     /// <remarks>ToolStripSplitButton is managed only by ToolStrip</remarks>
     public class SplitButton : Button
     {
-        private const int PushButtonWidth = 14;
-
-        private static readonly int BorderSize = SystemInformation.Border3DSize.Width * 2;
         private bool _dropDownButton;
-        private Rectangle _dropDownRectangle;
-
         private bool _showSplit = true;
-
         private bool _skipNextOpen;
-
+        private const int PushButtonWidth = 14;
         private PushButtonState _state;
+        private Rectangle _dropDownRectangle;
+        private static readonly int BorderSize = SystemInformation.Border3DSize.Width * 2;
 
         /// <summary>
         /// Constructor</summary>
