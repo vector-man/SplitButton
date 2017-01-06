@@ -364,7 +364,14 @@ namespace Sce.Atf.Controls
             // Draw the focus rectangle.
             if (MState != PushButtonState.Pressed && Focused)
             {
-                ControlPaint.DrawFocusRectangle(g, focusRect);
+                if (_dropDownButton)
+                {
+                    ControlPaint.DrawFocusRectangle(g, ClientRectangle);
+                }
+                else
+                {
+                    ControlPaint.DrawFocusRectangle(g, focusRect);
+                }
             }
         }
 
