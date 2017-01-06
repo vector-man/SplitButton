@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SplitButton", "SplitButton\SplitButton.csproj", "{B01CE8A2-5B57-43C4-BB72-6D4DC0189C3E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B01CE8A2-5B57-43C4-BB72-6D4DC0189C3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B01CE8A2-5B57-43C4-BB72-6D4DC0189C3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B01CE8A2-5B57-43C4-BB72-6D4DC0189C3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B01CE8A2-5B57-43C4-BB72-6D4DC0189C3E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(CodealikeProperties) = postSolution
+		SolutionGuid = 3deefa5b-75f6-41b7-9026-0e0b52cf94d2
+	EndGlobalSection
+EndGlobal
