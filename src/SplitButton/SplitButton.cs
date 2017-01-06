@@ -306,11 +306,25 @@ namespace Sce.Atf.Controls
                                               bounds.Height - BorderSize * 2);
 
             int internalBorder = BorderSize;
-            var focusRect =
-                new Rectangle(internalBorder,
-                              internalBorder,
-                              bounds.Width - _dropDownRectangle.Width - internalBorder,
-                              bounds.Height - (internalBorder * 2));
+            Rectangle focusRect;
+
+            // When DropDownButton is enabled, the focus rectangle spans the entire control.
+            if (_dropDownButton)
+            {
+                focusRect = new Rectangle(internalBorder,
+                                          internalBorder,
+                                          bounds.Width - (internalBorder * 2),
+                                          bounds.Height - (internalBorder * 2));
+            }
+
+            // While normally, the focus rectangle only covers the non-dropdown button area.
+            else
+            {
+                focusRect = new Rectangle(internalBorder,
+                                          internalBorder,
+                                          bounds.Width - _dropDownRectangle.Width - internalBorder,
+                                          bounds.Height - (internalBorder * 2));
+            }
 
             bool drawSplitLine = ((MState == PushButtonState.Hot || MState == PushButtonState.Pressed ||
                                   !Application.RenderWithVisualStyles) && !_dropDownButton);
@@ -364,14 +378,7 @@ namespace Sce.Atf.Controls
             // Draw the focus rectangle.
             if (MState != PushButtonState.Pressed && Focused)
             {
-                if (_dropDownButton)
-                {
-                    ControlPaint.DrawFocusRectangle(g, ClientRectangle);
-                }
-                else
-                {
-                    ControlPaint.DrawFocusRectangle(g, focusRect);
-                }
+                ControlPaint.DrawFocusRectangle(g, focusRect);
             }
         }
 
