@@ -1,5 +1,5 @@
 ﻿// Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
-// Copyright © Michael D. Corbett.
+// Copyright © 2017 Michael D. Corbett.
 
 using System;
 using System.ComponentModel;
