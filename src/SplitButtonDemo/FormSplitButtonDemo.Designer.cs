@@ -33,7 +33,7 @@
             this.applesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.orangesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.splitButton1 = new Sce.Atf.Controls.SplitButton();
+            this.splitButtonFruit = new Sce.Atf.Controls.SplitButton();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,26 +64,27 @@
             this.orangesToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.orangesToolStripMenuItem.Text = "Oranges";
             // 
-            // splitButton1
+            // splitButtonFruit
             // 
-            this.splitButton1.AutoSize = true;
-            this.splitButton1.ContextMenuStrip = this.contextMenuStrip1;
-            this.splitButton1.DropDownButton = true;
-            this.splitButton1.Location = new System.Drawing.Point(89, 145);
-            this.splitButton1.Name = "splitButton1";
-            this.splitButton1.Size = new System.Drawing.Size(97, 23);
-            this.splitButton1.TabIndex = 0;
-            this.splitButton1.Text = "splitButton1";
-            this.splitButton1.UseVisualStyleBackColor = true;
+            this.splitButtonFruit.AutoSize = true;
+            this.splitButtonFruit.ContextMenuStrip = this.contextMenuStrip1;
+            this.splitButtonFruit.DropDownButton = true;
+            this.splitButtonFruit.Location = new System.Drawing.Point(12, 12);
+            this.splitButtonFruit.Name = "splitButtonFruit";
+            this.splitButtonFruit.Size = new System.Drawing.Size(69, 23);
+            this.splitButtonFruit.TabIndex = 0;
+            this.splitButtonFruit.Text = "Fruiit";
+            this.splitButtonFruit.UseVisualStyleBackColor = true;
             // 
             // FormSplitButtonDemo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.splitButton1);
+            this.ClientSize = new System.Drawing.Size(281, 261);
+            this.Controls.Add(this.splitButtonFruit);
             this.Name = "FormSplitButtonDemo";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "SplitButton Demo";
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -92,7 +93,7 @@
 
         #endregion
 
-        private Sce.Atf.Controls.SplitButton splitButton1;
+        private Sce.Atf.Controls.SplitButton splitButtonFruit;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem applesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem orangesToolStripMenuItem;
