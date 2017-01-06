@@ -1,4 +1,5 @@
-﻿//Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+﻿// Copyright © 2014 Sony Computer Entertainment America LLC. See License.txt.
+// Copyright © Michael D. Corbett.
 
 using System;
 using System.ComponentModel;
@@ -10,8 +11,8 @@ namespace Sce.Atf.Controls
 {
     /// <summary>
     /// Represents a combination of a standard button on the left and a drop-down button on the right
-    /// that is not limited to Toolstrip</summary>
-    /// <remarks>ToolStripSplitButton is managed only by Toolstrip</remarks>
+    /// that is not limited to ToolStrip</summary>
+    /// <remarks>ToolStripSplitButton is managed only by ToolStrip</remarks>
     public class SplitButton : Button
     {
         /// <summary>
@@ -252,14 +253,14 @@ namespace Sce.Atf.Controls
             Graphics g = pevent.Graphics;
             Rectangle bounds = ClientRectangle;
 
-            // draw the button background as according to the current state.
+            // Draw the button background as according to the current state.
             if (MState != PushButtonState.Pressed && IsDefault && !Application.RenderWithVisualStyles)
             {
                 Rectangle backgroundBounds = bounds;
                 backgroundBounds.Inflate(-1, -1);
                 ButtonRenderer.DrawButton(g, backgroundBounds, MState);
 
-                // button renderer doesnt draw the black frame when themes are off =(
+                // Button renderer doesn't draw the black frame when themes are off =(.
                 g.DrawRectangle(SystemPens.WindowFrame, 0, 0, bounds.Width - 1, bounds.Height - 1);
             }
             else
@@ -267,7 +268,7 @@ namespace Sce.Atf.Controls
                 ButtonRenderer.DrawButton(g, bounds, MState);
             }
 
-            // calculate the current dropdown rectangle.
+            // Calculate the current dropdown rectangle.
             m_dropDownRectangle = new Rectangle(bounds.Right - PushButtonWidth - 1, BorderSize, PushButtonWidth,
                                               bounds.Height - BorderSize * 2);
 
@@ -287,7 +288,7 @@ namespace Sce.Atf.Controls
                 focusRect.X = m_dropDownRectangle.Right;
                 if (drawSplitLine)
                 {
-                    // draw two lines at the edge of the dropdown button
+                    // Draw two lines at the edge of the dropdown button.
                     g.DrawLine(SystemPens.ButtonShadow, bounds.Left + PushButtonWidth, BorderSize,
                                bounds.Left + PushButtonWidth, bounds.Bottom - BorderSize);
                     g.DrawLine(SystemPens.ButtonFace, bounds.Left + PushButtonWidth + 1, BorderSize,
@@ -298,7 +299,7 @@ namespace Sce.Atf.Controls
             {
                 if (drawSplitLine)
                 {
-                    // draw two lines at the edge of the dropdown button
+                    // Draw two lines at the edge of the dropdown button.
                     g.DrawLine(SystemPens.ButtonShadow, bounds.Right - PushButtonWidth, BorderSize,
                                bounds.Right - PushButtonWidth, bounds.Bottom - BorderSize);
                     g.DrawLine(SystemPens.ButtonFace, bounds.Right - PushButtonWidth - 1, BorderSize,
@@ -306,13 +307,13 @@ namespace Sce.Atf.Controls
                 }
             }
 
-            // Draw an arrow in the correct location
+            // Draw an arrow in the correct location.
             PaintArrow(g, m_dropDownRectangle);
 
             // Figure out how to draw the text
             TextFormatFlags formatFlags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
 
-            // If we dont' use mnemonic, set formatFlag to NoPrefix as this will show ampersand.
+            // If we don't use mnemonic, set formatFlag to NoPrefix as this will show ampersand.
             if (!UseMnemonic)
             {
                 formatFlags = formatFlags | TextFormatFlags.NoPrefix;
@@ -327,8 +328,7 @@ namespace Sce.Atf.Controls
                 TextRenderer.DrawText(g, Text, Font, focusRect, SystemColors.ControlText, formatFlags);
             }
 
-            // draw the focus rectangle.
-
+            // Draw the focus rectangle.
             if (MState != PushButtonState.Pressed && Focused)
             {
                 ControlPaint.DrawFocusRectangle(g, focusRect);
@@ -340,7 +340,7 @@ namespace Sce.Atf.Controls
             var middle = new Point(Convert.ToInt32(dropDownRect.Left + dropDownRect.Width / 2),
                                    Convert.ToInt32(dropDownRect.Top + dropDownRect.Height / 2));
 
-            //if the width is odd - favor pushing it over one pixel right.
+            // If the width is odd - favor pushing it over one pixel right.
             middle.X += (dropDownRect.Width % 2);
 
             var arrow = new[]
