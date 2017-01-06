@@ -18,7 +18,7 @@ namespace Sce.Atf.Controls
         private const int PushButtonWidth = 14;
 
         private static readonly int BorderSize = SystemInformation.Border3DSize.Width * 2;
-
+        private bool _dropDownButton;
         private Rectangle _dropDownRectangle;
 
         private bool _showSplit = true;
@@ -32,6 +32,31 @@ namespace Sce.Atf.Controls
         public SplitButton()
         {
             AutoSize = true;
+        }
+
+        /// <summary>
+        /// Sets whether to show button as a dropdown button</summary>
+        [DefaultValue(true)]
+        public bool DropDownButton
+        {
+            get
+            {
+                return _dropDownButton;
+            }
+
+            set
+            {
+                if (value != _dropDownButton)
+                {
+                    _dropDownButton = value;
+
+                    Invalidate();
+                    if (Parent != null)
+                    {
+                        Parent.PerformLayout();
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -177,7 +202,7 @@ namespace Sce.Atf.Controls
                 return;
             }
 
-            if (_dropDownRectangle.Contains(e.Location))
+            if (_dropDownRectangle.Contains(e.Location) || _dropDownButton)
             {
                 ShowContextMenuStrip();
             }
@@ -242,8 +267,8 @@ namespace Sce.Atf.Controls
             if (ContextMenuStrip == null || !ContextMenuStrip.Visible)
             {
                 SetButtonDrawState();
-                if (Bounds.Contains(Parent.PointToClient(Cursor.Position)) &&
-                    !_dropDownRectangle.Contains(mevent.Location))
+                if ((Bounds.Contains(Parent.PointToClient(Cursor.Position)) &&
+                    !(_dropDownRectangle.Contains(mevent.Location)) && _dropDownButton))
                 {
                     OnClick(new EventArgs());
                 }
@@ -291,8 +316,8 @@ namespace Sce.Atf.Controls
                               bounds.Width - _dropDownRectangle.Width - internalBorder,
                               bounds.Height - (internalBorder * 2));
 
-            bool drawSplitLine = (MState == PushButtonState.Hot || MState == PushButtonState.Pressed ||
-                                  !Application.RenderWithVisualStyles);
+            bool drawSplitLine = ((MState == PushButtonState.Hot || MState == PushButtonState.Pressed ||
+                                  !Application.RenderWithVisualStyles) && !_dropDownButton);
 
             if (RightToLeft == RightToLeft.Yes)
             {
@@ -359,7 +384,9 @@ namespace Sce.Atf.Controls
 
             if (e.CloseReason == ToolStripDropDownCloseReason.AppClicked)
             {
-                _skipNextOpen = (_dropDownRectangle.Contains(PointToClient(Cursor.Position)));
+                _skipNextOpen = (_dropDownRectangle.Contains(PointToClient(Cursor.Position)) ||
+                                (ClientRectangle.Contains(PointToClient(Cursor.Position)) &&
+                                _dropDownButton));
             }
         }
 
