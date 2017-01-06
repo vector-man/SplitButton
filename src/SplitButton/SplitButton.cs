@@ -32,7 +32,7 @@ namespace Sce.Atf.Controls
 
         /// <summary>
         /// Sets whether to show button as a dropdown button</summary>
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool DropDownButton
         {
             get
