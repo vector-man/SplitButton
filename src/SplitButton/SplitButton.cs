@@ -19,13 +19,13 @@ namespace Sce.Atf.Controls
 
         private static readonly int BorderSize = SystemInformation.Border3DSize.Width * 2;
 
-        private Rectangle m_dropDownRectangle;
+        private Rectangle _dropDownRectangle;
 
-        private bool m_showSplit = true;
+        private bool _showSplit = true;
 
-        private bool m_skipNextOpen;
+        private bool _skipNextOpen;
 
-        private PushButtonState m_state;
+        private PushButtonState _state;
 
         /// <summary>
         /// Constructor</summary>
@@ -41,9 +41,9 @@ namespace Sce.Atf.Controls
         {
             set
             {
-                if (value != m_showSplit)
+                if (value != _showSplit)
                 {
-                    m_showSplit = value;
+                    _showSplit = value;
                     Invalidate();
                     if (Parent != null)
                     {
@@ -55,13 +55,13 @@ namespace Sce.Atf.Controls
 
         private PushButtonState MState
         {
-            get { return m_state; }
+            get { return _state; }
 
             set
             {
-                if (!m_state.Equals(value))
+                if (!_state.Equals(value))
                 {
-                    m_state = value;
+                    _state = value;
                     Invalidate();
                 }
             }
@@ -74,7 +74,7 @@ namespace Sce.Atf.Controls
         public override Size GetPreferredSize(Size proposedSize)
         {
             Size preferredSize = base.GetPreferredSize(proposedSize);
-            if (m_showSplit && !string.IsNullOrEmpty(Text) &&
+            if (_showSplit && !string.IsNullOrEmpty(Text) &&
                 TextRenderer.MeasureText(Text, Font).Width + PushButtonWidth > preferredSize.Width)
             {
                 return preferredSize + new Size(PushButtonWidth + BorderSize * 2, 0);
@@ -88,7 +88,7 @@ namespace Sce.Atf.Controls
         /// <returns>True iff key is input key</returns>
         protected override bool IsInputKey(Keys keyData)
         {
-            if (keyData.Equals(Keys.Down) && m_showSplit)
+            if (keyData.Equals(Keys.Down) && _showSplit)
             {
                 return true;
             }
@@ -103,7 +103,7 @@ namespace Sce.Atf.Controls
         /// <param name="e">A System.EventArgs that contains the event data</param>
         protected override void OnGotFocus(EventArgs e)
         {
-            if (!m_showSplit)
+            if (!_showSplit)
             {
                 base.OnGotFocus(e);
                 return;
@@ -120,7 +120,7 @@ namespace Sce.Atf.Controls
         /// <param name="kevent">KeyEventArgs that contains the event data</param>
         protected override void OnKeyDown(KeyEventArgs kevent)
         {
-            if (m_showSplit)
+            if (_showSplit)
             {
                 if (kevent.KeyCode.Equals(Keys.Down))
                 {
@@ -155,7 +155,7 @@ namespace Sce.Atf.Controls
         /// <param name="e">EventArgs that contains the event data</param>
         protected override void OnLostFocus(EventArgs e)
         {
-            if (!m_showSplit)
+            if (!_showSplit)
             {
                 base.OnLostFocus(e);
                 return;
@@ -171,13 +171,13 @@ namespace Sce.Atf.Controls
         /// <param name="e">MouseEventArgs that contains the event data</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            if (!m_showSplit)
+            if (!_showSplit)
             {
                 base.OnMouseDown(e);
                 return;
             }
 
-            if (m_dropDownRectangle.Contains(e.Location))
+            if (_dropDownRectangle.Contains(e.Location))
             {
                 ShowContextMenuStrip();
             }
@@ -192,7 +192,7 @@ namespace Sce.Atf.Controls
         /// <param name="e">EventArgs that contains the event data</param>
         protected override void OnMouseEnter(EventArgs e)
         {
-            if (!m_showSplit)
+            if (!_showSplit)
             {
                 base.OnMouseEnter(e);
                 return;
@@ -209,7 +209,7 @@ namespace Sce.Atf.Controls
         /// <param name="e">EventArgs that contains the event data</param>
         protected override void OnMouseLeave(EventArgs e)
         {
-            if (!m_showSplit)
+            if (!_showSplit)
             {
                 base.OnMouseLeave(e);
                 return;
@@ -233,7 +233,7 @@ namespace Sce.Atf.Controls
         /// <param name="mevent">MouseEventArgs that contains the event data</param>
         protected override void OnMouseUp(MouseEventArgs mevent)
         {
-            if (!m_showSplit)
+            if (!_showSplit)
             {
                 base.OnMouseUp(mevent);
                 return;
@@ -243,7 +243,7 @@ namespace Sce.Atf.Controls
             {
                 SetButtonDrawState();
                 if (Bounds.Contains(Parent.PointToClient(Cursor.Position)) &&
-                    !m_dropDownRectangle.Contains(mevent.Location))
+                    !_dropDownRectangle.Contains(mevent.Location))
                 {
                     OnClick(new EventArgs());
                 }
@@ -257,7 +257,7 @@ namespace Sce.Atf.Controls
         {
             base.OnPaint(pevent);
 
-            if (!m_showSplit)
+            if (!_showSplit)
             {
                 return;
             }
@@ -281,14 +281,14 @@ namespace Sce.Atf.Controls
             }
 
             // Calculate the current dropdown rectangle.
-            m_dropDownRectangle = new Rectangle(bounds.Right - PushButtonWidth - 1, BorderSize, PushButtonWidth,
+            _dropDownRectangle = new Rectangle(bounds.Right - PushButtonWidth - 1, BorderSize, PushButtonWidth,
                                               bounds.Height - BorderSize * 2);
 
             int internalBorder = BorderSize;
             var focusRect =
                 new Rectangle(internalBorder,
                               internalBorder,
-                              bounds.Width - m_dropDownRectangle.Width - internalBorder,
+                              bounds.Width - _dropDownRectangle.Width - internalBorder,
                               bounds.Height - (internalBorder * 2));
 
             bool drawSplitLine = (MState == PushButtonState.Hot || MState == PushButtonState.Pressed ||
@@ -296,8 +296,8 @@ namespace Sce.Atf.Controls
 
             if (RightToLeft == RightToLeft.Yes)
             {
-                m_dropDownRectangle.X = bounds.Left + 1;
-                focusRect.X = m_dropDownRectangle.Right;
+                _dropDownRectangle.X = bounds.Left + 1;
+                focusRect.X = _dropDownRectangle.Right;
                 if (drawSplitLine)
                 {
                     // Draw two lines at the edge of the dropdown button.
@@ -320,7 +320,7 @@ namespace Sce.Atf.Controls
             }
 
             // Draw an arrow in the correct location.
-            PaintArrow(g, m_dropDownRectangle);
+            PaintArrow(g, _dropDownRectangle);
 
             // Figure out how to draw the text
             TextFormatFlags formatFlags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
@@ -359,7 +359,7 @@ namespace Sce.Atf.Controls
 
             if (e.CloseReason == ToolStripDropDownCloseReason.AppClicked)
             {
-                m_skipNextOpen = (m_dropDownRectangle.Contains(PointToClient(Cursor.Position)));
+                _skipNextOpen = (_dropDownRectangle.Contains(PointToClient(Cursor.Position)));
             }
         }
 
@@ -398,11 +398,11 @@ namespace Sce.Atf.Controls
 
         private void ShowContextMenuStrip()
         {
-            if (m_skipNextOpen)
+            if (_skipNextOpen)
             {
                 // we were called because we're closing the context menu strip
                 // when clicking the dropdown button.
-                m_skipNextOpen = false;
+                _skipNextOpen = false;
                 return;
             }
             MState = PushButtonState.Pressed;
