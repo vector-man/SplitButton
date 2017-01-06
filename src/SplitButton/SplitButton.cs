@@ -311,10 +311,8 @@ namespace Sce.Atf.Controls
             // When DropDownButton is enabled, the focus rectangle spans the entire control.
             if (_dropDownButton)
             {
-                focusRect = new Rectangle(internalBorder,
-                                          internalBorder,
-                                          bounds.Width - (internalBorder * 2),
-                                          bounds.Height - (internalBorder * 2));
+                focusRect = bounds;
+                focusRect.Inflate(-3, -3);
             }
 
             // While normally, the focus rectangle only covers the non-dropdown button area.
