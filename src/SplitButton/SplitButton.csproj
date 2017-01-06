@@ -7,7 +7,7 @@
     <ProjectGuid>{B01CE8A2-5B57-43C4-BB72-6D4DC0189C3E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SplitButton</RootNamespace>
+    <RootNamespace>Sce.Atf.Controls</RootNamespace>
     <AssemblyName>SplitButton</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
