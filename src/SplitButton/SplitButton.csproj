@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Sce.Atf.Controls</RootNamespace>
-    <AssemblyName>SplitButton</AssemblyName>
+    <AssemblyName>Sce.Atf.Controls.SplitButton</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
