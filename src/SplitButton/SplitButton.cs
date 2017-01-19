@@ -15,19 +15,39 @@ namespace Sce.Atf.Controls
     /// <remarks>ToolStripSplitButton is managed only by ToolStrip</remarks>
     public class SplitButton : Button
     {
+        private const int PushButtonWidth = 14;
+        private static readonly int BorderSize = SystemInformation.Border3DSize.Width * 2;
+        private ContextMenuStrip _contextMenuStrip;
         private bool _dropDownButton;
+        private Rectangle _dropDownRectangle;
         private bool _showSplit = true;
         private bool _skipNextOpen;
-        private const int PushButtonWidth = 14;
         private PushButtonState _state;
-        private Rectangle _dropDownRectangle;
-        private static readonly int BorderSize = SystemInformation.Border3DSize.Width * 2;
 
         /// <summary>
         /// Constructor</summary>
         public SplitButton()
         {
             AutoSize = true;
+        }
+
+        /// <summary>
+        /// Gets or sets the ContextMenuStrip associated with the control.
+        /// </summary>
+        public override ContextMenuStrip ContextMenuStrip
+        {
+            get
+            {
+                return _contextMenuStrip;
+            }
+
+            set
+            {
+                if (value != _contextMenuStrip)
+                {
+                    _contextMenuStrip = value;
+                }
+            }
         }
 
         /// <summary>
@@ -198,9 +218,18 @@ namespace Sce.Atf.Controls
                 return;
             }
 
-            if (_dropDownRectangle.Contains(e.Location) || _dropDownButton)
+            if ((_dropDownRectangle.Contains(e.Location) || _dropDownButton))
             {
-                ShowContextMenuStrip();
+                if (e.Button == MouseButtons.Right)
+                {
+                    MState = PushButtonState.Pressed;
+
+                    _skipNextOpen = false;
+                }
+                else
+                {
+                    ShowContextMenuStrip();
+                }
             }
             else
             {
