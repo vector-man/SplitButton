@@ -28,7 +28,6 @@ namespace Sce.Atf.Controls
         /// Constructor</summary>
         public SplitButton()
         {
-            AutoSize = true;
         }
 
         /// <summary>
