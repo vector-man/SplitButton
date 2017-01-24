@@ -221,18 +221,13 @@ namespace Sce.Atf.Controls
             {
                 if (e.Button == MouseButtons.Right)
                 {
-                    MState = PushButtonState.Pressed;
-
                     _skipNextOpen = false;
                 }
                 else
                 {
                     ShowContextMenuStrip();
+                    MState = PushButtonState.Pressed;
                 }
-            }
-            else
-            {
-                MState = PushButtonState.Pressed;
             }
         }
 
