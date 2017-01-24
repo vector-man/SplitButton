@@ -5,7 +5,7 @@ Overview
 ========
 I have been looking for a free dropdown button for Windows Forms, and found nothing out there that suited my needs. You can find plenty of SplitButtons online (where you must click the right arrow for the menu to appear), but no dropdown buttons (clicking the entire button displays a menu).
 
-So, after much searching, I stumbled across the [Authoring Tools Framework (ATF) by Sony](https://github.com/SonyWWS/ATF). They include a SplitButton control (but, again, no dropdown support). So, I have forked and modified their control to also include a DropDown property.
+So, after much searching, I stumbled across the [Authoring Tools Framework (ATF) by Sony](https://github.com/SonyWWS/ATF). They include a SplitButton control (but, again, no dropdown support). So, I have forked and modified their control to also include a DropDownButton mode.
 
 Usage
 =====
