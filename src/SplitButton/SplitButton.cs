@@ -217,18 +217,16 @@ namespace Sce.Atf.Controls
                 return;
             }
 
-            if ((_dropDownRectangle.Contains(e.Location) || _dropDownButton))
+            if (e.Button == MouseButtons.Right)
             {
-                if (e.Button == MouseButtons.Right)
-                {
-                    _skipNextOpen = false;
-                }
-                else
-                {
-                    ShowContextMenuStrip();
-                    MState = PushButtonState.Pressed;
-                }
+                _skipNextOpen = false;
             }
+            else if ((_dropDownRectangle.Contains(e.Location) || _dropDownButton))
+            {
+                ShowContextMenuStrip();
+            }
+
+            MState = PushButtonState.Pressed;
         }
 
         /// <summary>
