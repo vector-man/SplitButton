@@ -1,6 +1,8 @@
 # SplitButton
 A SplitButton and DropDownButton for Windows Forms written in C#, forked and improved from [Authoring Tools Framework (ATF) by Sony.](https://github.com/SonyWWS/ATF)
 
+![splitbutton](https://user-images.githubusercontent.com/4753368/198473510-7104c741-3cd3-481b-82f1-18330b936352.png)
+
 Overview
 ========
 I have been looking for a free dropdown button for Windows Forms, and found nothing out there that suited my needs. You can find plenty of SplitButtons online (where you must click the right arrow for the menu to appear), but no dropdown buttons (clicking the entire button displays a menu).
